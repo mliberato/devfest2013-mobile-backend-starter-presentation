@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="logoslide nobackground">
+    <article class="flexbox vcenter">
+      <span><img src="images/google_developers_logo.png"></span>
+    </article>
+  </slide>
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/logo_on.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>O que é?</h2>
+    </hgroup>
+    <article>
+      <p>
+        Mobile Backend Starter é uma aplicação backend genérica, extensível e escalável.
+      </p>
+      <p>
+        Ao utilizá-lo é possível manter o foco do desenvolvimento no aplicativo mobile e criar protótipos funcionais em muito menos tempo, já preparados para escalar em produção.
+      </p>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Arquitetura</h2>
+    </hgroup>
+    <article class="flexbox vcenter smaller">
+      <ul>
+        <li>Aplicativo "Mobile Backend" instalado no App Engine</li>
+        <li>Cloud Endpoints client libraries</li>
+        <li>Aplicativo Android/iOS desenvolvido utilizando as client libraries</li>
+      </ul>
+      <img src="images/slides/architecture.png">
+    </article>
+  </slide>
+
+
+
+  <slide>
+    <hgroup>
+      <h2>Principais características</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Autenticação integrada com Contas Google (OAuth2)</li>
+        <li>Acesso ao Datastore
+          <ul>
+              <li>Operações CRUD</li>
+              <li>Autorização por tipo de entidade</li>
+              <li>Schema-less</li>
+          </ul>
+        </li>
+        <li>Chamadas de API assíncronas (Android)</li>
+        <li>Continuous query
+          <ul>
+              <li>Código Client/Server implementados</li>
+              <li>GCM para Android / APNS para iOS</li>
+          </ul>
+        </li>
+        <li>Real-time Pub/Sub messaging</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Setup</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Deploy do backend</li>
+        <li>Configuração do backend</li>
+        <li>Ambiente de desenvolvimento (Android)</li>
+        <li>Exemplo: Guestbook</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Deploy do backend</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/slides/deploy.png">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Configuração do backend</h2>
+    </hgroup>
+    <article class="flexbox vcenter smaller">
+      <ul>
+        <li><b>Config URL:</b> https:// {{ your-project-id }} .appspot.com/admin/configure.jsp</li>
+        <li><b>API explorer:</b> https:// {{ your-project-id }} .appspot.com/_ah/api/explorer</li>
+      </ul>
+      <img src="images/slides/config.png">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Configuração do backend</h2>
+      <h3>Habilitando Google Cloud Messaging (Android)</h3>
+    </hgroup>
+    <article class="smaller">
+      <ul>
+        <li>Acessar <b>APIs &amp; auth / Registered apps</b> no Cloud Console (https://cloud.google.com/console)</li>
+        <li>Registrar um novo app "Mobile Backend", e selecionar "Web Application" no campo "Platform"</li>
+        <li>Copiar o API KEY do bloco Server Key e colar na parte de configuração do MBS</li>
+      </ul>
+      <img src="images/slides/keys.png">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Ambiente de desenvolvimento (Android)</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Instalar Eclipse e ADT
+          <ul>
+            <li>Instalar último Eclipse e Google Plugin for Eclipse</li>
+            <li>Android Developer Tools</li>
+            <li>Google App Engine Tools for Android</li>
+            <li>Android SDK</li>
+            <li>Android 4.0.3+</li>
+            <li>Em "Extras", Google Cloud Messaging for Android</li>
+          </ul>
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Guestbook (Android)</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Clone o repo https://github.com/GoogleCloudPlatform/solutions-mobile-backend-starter-android-client</li>
+        <li>Aplicar pull request #4</li>
+        <li>Adicionar o projeto "google-play-services_lib" no workspace do Eclipse</li>
+        <li>Editar no arquivo Consts.java as variáveis PROJECT_ID e PROJECT_NUMBER</li>
+        <li>Editar no arquivo Mobilebackend.java a variável DEFAULT_ROOT_URL</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Guestbook (iOS)</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Clone o repo https://github.com/GoogleCloudPlatform/solutions-mobile-backend-starter-ios-client</li>
+        <li>Editar no arquivo "Constants.m" as variáveis kCloudBackendClientID, kCloudBackendClientSecret e kCloudBackendServiceURL</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Salvando no Datastore</h2>
+      <h3>Utilizando CloudBackendAsync</h3>
+    </hgroup>
+    <article class="smaller">
+      <pre class="prettyprint" data-lang="java">
+        <b>
+        CloudEntity newPost = new CloudEntity("Guestbook");
+        newPost.put("message", mMessageTxt.getText().toString());
+        </b>
+        CloudCallbackHandler&lt;CloudEntity&gt; handler = new CloudCallbackHandler&lt;CloudEntity&gt;() {
+            @Override
+            public void onComplete(final CloudEntity result) {
+                mPosts.add(0, result);
+                updateGuestbookView();
+            }
+        };
+        <b>
+        getCloudBackend().insert(newPost, handler);
+        </b>
+        
+      </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Continuous query</h2>
+      <h3>Apresentando dados de forma contínua</h3>
+    </hgroup>
+    <article class="smaller">
+      <pre class="prettyprint" data-lang="java">
+    private void listPosts() {
+        CloudCallbackHandler&lt;List&lt;CloudEntity&gt;&gt; handler =
+                new CloudCallbackHandler&lt;List&lt;CloudEntity&gt;&gt;() {
+                    @Override
+                    public void onComplete(List&lt;CloudEntity&gt; results) {
+                        mPosts = results;
+                        updateGuestbookView();
+                    }
+                };
+        <b>
+        // FROM Guestbook ORDER BY _createdAt DESC LIMIT 50
+        getCloudBackend().listByKind(
+                "Guestbook", CloudEntity.PROP_CREATED_AT, Order.DESC, 50,
+                Scope.FUTURE_AND_PAST, handler);
+        </b>
+    }
+        
+      </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Exemplo de CloudQuery</h2>
+    </hgroup>
+    <article class="smaller">
+      <pre class="prettyprint" data-lang="java">
+        CloudQuery cq = new CloudQuery("MyAddressBook");
+        cq.setFilter(Filter.and(Filter.eq("name", "John Smith"), Filter.eq("label", "friends")));
+        cq.setLimit(50);
+        List&lt;CloudEntity&gt; results = cloudBackend.list(cq);
+      </pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Segurança</h2>
+      <h3>Web Client ID (Android)</h3>
+    </hgroup>
+    <article class="smaller">
+      <ul>
+        <li>Acessar <b>APIs &amp; auth / Registered apps</b> no Cloud Console (https://cloud.google.com/console)</li>
+        <li>Acessar o app "Mobile Backend" criado anteriormente</li>
+        <li>Copiar o CLIENT ID do bloco "OAuth 2.0 Client ID" e colar no campo "Web Client ID" na parte de configuração do MBS</li>
+      </ul>
+      <img src="images/slides/client-id.png">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Segurança</h2>
+      <h3>Android Client ID</h3>
+    </hgroup>
+    <article class="smaller">
+      <ul>
+        <li>Acessar <b>APIs &amp; auth / Registered apps</b> no Cloud Console (https://cloud.google.com/console)</li>
+        <li>Registrar um novo app "Android Client", e selecionar "Android / Accessing APIs directly from Android" no campo "Platform"</li>
+        <li>Preencher "com.google.cloud.backend" no campo "Package name"</li>
+        <li>Executar o seguinte comando e preencher o campo "SHA1 fingerprint" com sua chave de debug:
+          <pre class="prettyprint">
+            keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore -list -v
+          </pre>
+        </li>
+        <li>Copiar o CLIENT ID do bloco "OAuth 2.0 Client ID" e colar no campo "Android Client ID" na parte de configuração do MBS</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Segurança</h2>
+      <h3>iOS Client ID</h3>
+    </hgroup>
+    <article class="smaller">
+      <ul>
+        <li>Acessar <b>APIs &amp; auth / Registered apps</b> no Cloud Console (https://cloud.google.com/console)</li>
+        <li>Registrar um novo app "iOS Client", e selecionar "iOS / Accessing APIs directly from iOS" no campo "Platform"</li>
+        <li>Preencher o campo "Bundle ID" de acordo com o que estiver configurado no projeto</li>
+        <li>Copiar o CLIENT ID do bloco "OAuth 2.0 Client ID" e colar no campo "iOS Client ID" na parte de configuração do MBS</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Segurança</h2>
+      <h3>Controle de acesso para Cloud Entities</h3>
+    </hgroup>
+    <article class="smaller">
+      <table>
+        <tr>
+          <th>Prefixo</th><th>Exemplo</th><th>get/query</th><th>update/delete</th><th>insert</th>
+        </tr>
+        <tr>
+          <td>sem prefixo</td><td>Guestbook</td><td>todos</td><td>entity owner</td><td>todos</td>
+        </tr>
+        <tr>
+          <td>[private]</td><td>[private]Guestbook</td><td>entity owner</td><td>entity owner</td><td>todos</td>
+        </tr>
+        <tr>
+          <td>[public]</td><td>[public]Guestbook</td><td>todos</td><td>todos</td><td>todos</td>
+        </tr>
+      </table>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/logo_on.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Q&amp;A</h2>
+    </hgroup>
+  </slide>
+
+  <slide class="thank-you-slide segue nobackground">
+    <aside class="gdbar right"><img src="images/logo_on.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>&lt;Obrigado!&gt;</h2>
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+  <slide class="logoslide dark nobackground">
+    <article class="flexbox vcenter">
+      <span><img src="images/google_developers_logo_white.png"></span>
+    </article>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
